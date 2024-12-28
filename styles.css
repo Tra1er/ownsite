@@ -1,3 +1,4 @@
+/* Global styles */
 * {
     margin: 0;
     padding: 0;
@@ -5,34 +6,40 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(45deg, #f0f4f8, #a9c8e3);
+    background: #f1f1f1;
+    color: #333;
     transition: all 0.3s ease;
 }
 
 .container {
-    width: 80%;
-    max-width: 700px;
+    width: 90%;
+    max-width: 600px;
     text-align: center;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
 }
 
 header h1 {
-    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
 }
 
 button {
@@ -42,7 +49,8 @@ button {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin: 10px;
+    margin: 5px;
+    font-size: 16px;
 }
 
 button:hover {
@@ -50,7 +58,7 @@ button:hover {
 }
 
 input {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
@@ -65,33 +73,15 @@ input {
     display: block;
 }
 
-footer {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-    color: #555;
-}
-
-button {
-    background-color: #6c63ff;
-    border-radius: 5px;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-/* Theme selector */
 #theme-selector {
     display: none;
     position: absolute;
-    top: 60px;
+    top: 80px;
     right: 20px;
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 5px;
     padding: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .theme-selector button {
@@ -126,8 +116,4 @@ button {
 
 .retro-theme {
     background: linear-gradient(45deg, #ff8c00, #8c2b00);
-}
-
-.vintage-theme {
-    background: linear-gradient(45deg, #a4a4a4, #ddcfcf);
 }

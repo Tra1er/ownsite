@@ -1,119 +1,119 @@
-/* Global styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Default theme: Cosy */
 body {
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #f1f1f1;
-    color: #333;
-    transition: all 0.3s ease;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
 }
 
-.container {
-    width: 90%;
-    max-width: 600px;
-    text-align: center;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+h1 {
+  text-align: center;
+  margin-top: 50px;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header h1 {
-    font-size: 24px;
-}
-
-.user-actions {
-    display: flex;
-    align-items: center;
+.header-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 20px;
 }
 
 button {
-    background-color: #4e8cfe;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 5px;
-    font-size: 16px;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #3b74c1;
+  background-color: #ddd;
 }
 
-input {
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+.main-content {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.page {
-    display: none;
+.login-form, .register-form {
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin: 20px;
 }
 
-#dashboard {
-    display: block;
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-#theme-selector {
-    display: none;
-    position: absolute;
-    top: 80px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+.dashboard {
+  display: none;
 }
 
-.theme-selector button {
-    background: #6c63ff;
-    border-radius: 5px;
-    color: white;
-    padding: 10px;
-    margin: 5px;
-    cursor: pointer;
+button.theme-btn {
+  margin: 0 5px;
 }
 
-.theme-selector button:hover {
-    background-color: #5a54e7;
+.logout-btn {
+  display: none;
 }
 
-/* Themes */
-.cosy-theme {
-    background: linear-gradient(45deg, #ff99cc, #66b3ff);
+/* Cosy theme */
+body.cosy {
+  background-color: #f5f5f5;
+  color: #333;
 }
 
-.cyberpunk-theme {
-    background: linear-gradient(45deg, #ff007f, #ff00cc);
+button.cosy {
+  background-color: #ff7f50;
+  color: white;
 }
 
-.modern-theme {
-    background: linear-gradient(45deg, #ffffff, #99ccff);
+/* Cyberpunk theme */
+body.cyberpunk {
+  background-color: #0e0e0e;
+  color: #e4e4e4;
 }
 
-.classic-theme {
-    background: linear-gradient(45deg, #f0f0f0, #d4d4d4);
+button.cyberpunk {
+  background-color: #00ffcc;
+  color: black;
 }
 
-.retro-theme {
-    background: linear-gradient(45deg, #ff8c00, #8c2b00);
+/* Modern theme */
+body.modern {
+  background-color: #f0f0f0;
+  color: #2f2f2f;
+}
+
+button.modern {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Classic theme */
+body.classic {
+  background-color: #fff;
+  color: #000;
+}
+
+button.classic {
+  background-color: #c5a7c4;
+  color: black;
+}
+
+/* Retro theme */
+body.retro {
+  background-color: #f0e1b2;
+  color: #803f3f;
+}
+
+button.retro {
+  background-color: #ffcc00;
+  color: black;
 }

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supabase Login Example</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.7.0/dist/umd/supabase.min.js"></script> <!-- Supabase CDN -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Load the Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.7.0/dist/umd/supabase.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css"> <!-- Your custom CSS -->
 </head>
 <body>
     <div id="auth">
@@ -30,6 +32,7 @@
 
     <!-- Your JavaScript -->
     <script>
+        // Initialize Supabase client AFTER the SDK is loaded
         const supabase = supabase.createClient(
             'https://ynglngyvvsrmxxfkenyy.supabase.co', // Your Supabase URL
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InluZ2xuZ3l2dnNybXh4Zmtlbnl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU0MTQ4ODMsImV4cCI6MjA1MDk5MDg4M30.L6xiq6z2gFhnE_mi2JoGEua5o43wosW5fEHhyndnRU4' // Your Supabase Key

@@ -13,8 +13,20 @@
         <header>
             <h1>Welcome to CozySpace</h1>
             <nav>
-                <button onclick="showPage('register')">Register</button>
-                <button onclick="showPage('login')">Login</button>
+                <div id="auth-links">
+                    <button onclick="showPage('register')" id="register-btn">Register</button>
+                    <button onclick="showPage('login')" id="login-btn">Login</button>
+                    <button onclick="logout()" id="logout-btn" style="display: none;">Logout</button>
+                </div>
+                <button id="theme-btn" onclick="toggleThemeSelector()">Change Theme</button>
+                <div id="theme-selector" class="theme-selector">
+                    <button onclick="setTheme('cosy-theme')">Cosy</button>
+                    <button onclick="setTheme('cyberpunk-theme')">Cyberpunk</button>
+                    <button onclick="setTheme('modern-theme')">Modern</button>
+                    <button onclick="setTheme('classic-theme')">Classic</button>
+                    <button onclick="setTheme('retro-theme')">Retro</button>
+                    <button onclick="setTheme('vintage-theme')">Vintage</button>
+                </div>
             </nav>
         </header>
 
@@ -45,8 +57,7 @@
         <section id="dashboard" class="page">
             <h2>Welcome to your Dashboard</h2>
             <p>Feel free to explore your personalized space!</p>
-            <button onclick="changeTheme()">Change Theme</button>
-            <button onclick="showPage('login')">Logout</button>
+            <button onclick="showPage('login')">Go to Login</button>
         </section>
     </div>
 

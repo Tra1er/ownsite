@@ -69,3 +69,7 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("logoutSection").style.display = "none";
   }
 });
+
+// Attach event listeners
+document.getElementById("registerBtn").addEventListener("click", registerUser);
+document.getElementById("loginBtn").addEventListener("click", loginUser);

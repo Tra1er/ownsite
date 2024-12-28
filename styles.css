@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #f0f4f8, #a9c8e3);
+    transition: all 0.3s ease;
+}
+
+.container {
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4e8cfe;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #3b74c1;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.page {
+    display: none;
+}
+
+#dashboard {
+    display: block;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #555;
+}
+
+.cosy-theme {
+    background: linear-gradient(45deg, #ff99cc, #66b3ff);
+}
+
+.cyberpunk-theme {
+    background: linear-gradient(45deg, #ff007f, #ff00cc);
+}
+
+.modern-theme {
+    background: linear-gradient(45deg, #ffffff, #99ccff);
+}
+
+.classic-theme {
+    background: linear-gradient(45deg, #f0f0f0, #d4d4d4);
+}
+
+button {
+    background-color: #6c63ff;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}

@@ -22,17 +22,16 @@ onAuthStateChanged(auth, (user) => {
     const userName = document.getElementById("userName");
     const loginForm = document.getElementById("loginForm");
     const logoutSection = document.getElementById("logoutSection");
-    const loginBtn = document.getElementById("loginBtn");
-
+    
     if (user) {
         // User is logged in
         userName.textContent = user.email;
-        loginForm.style.display = "none";
-        logoutSection.style.display = "block";
+        loginForm.style.display = "none"; // Hide login form
+        logoutSection.style.display = "block"; // Show logout section
     } else {
         // User is logged out
-        loginForm.style.display = "block";
-        logoutSection.style.display = "none";
+        loginForm.style.display = "block"; // Show login form
+        logoutSection.style.display = "none"; // Hide logout section
     }
 });
 
@@ -78,3 +77,4 @@ function logoutUser() {
 // Attach events to buttons
 document.getElementById("loginBtn").addEventListener("click", loginUser);
 document.getElementById("registerBtn").addEventListener("click", registerUser);
+document.getElementById("logoutBtn").addEventListener("click", logoutUser); // Ensure that this is wired up correctly

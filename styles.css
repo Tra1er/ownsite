@@ -24,6 +24,13 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 header h1 {
     margin-bottom: 20px;
 }
@@ -66,6 +73,41 @@ footer {
     color: #555;
 }
 
+button {
+    background-color: #6c63ff;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Theme selector */
+#theme-selector {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.theme-selector button {
+    background: #6c63ff;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.theme-selector button:hover {
+    background-color: #5a54e7;
+}
+
+/* Themes */
 .cosy-theme {
     background: linear-gradient(45deg, #ff99cc, #66b3ff);
 }
@@ -82,11 +124,10 @@ footer {
     background: linear-gradient(45deg, #f0f0f0, #d4d4d4);
 }
 
-button {
-    background-color: #6c63ff;
-    border-radius: 5px;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
+.retro-theme {
+    background: linear-gradient(45deg, #ff8c00, #8c2b00);
+}
+
+.vintage-theme {
+    background: linear-gradient(45deg, #a4a4a4, #ddcfcf);
 }

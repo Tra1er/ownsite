@@ -1,32 +1,76 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    transition: background 0.5s, color 0.5s;
+}
+
+h1 {
+    margin-bottom: 20px;
     text-align: center;
-    padding: 20px;
+    color: #fff;
 }
 
-#auth-section {
-    margin-top: 50px;
-}
-
-input {
-    display: block;
-    margin: 10px auto;
-    padding: 8px;
-    width: 200px;
+h2, h3 {
+    color: #fff;
 }
 
 button {
-    margin: 5px;
     padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
 }
 
-.light {
-    background-color: #f9f9f9;
+button:hover {
+    transform: scale(1.05);
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hidden {
+    display: none;
+}
+
+#theme-selector button {
+    margin: 5px;
+}
+
+/* Themes */
+.theme-light {
+    background: linear-gradient(to right, #f0f8ff, #d7e9f7);
     color: #333;
 }
 
-.dark {
-    background-color: #333;
-    color: #f9f9f9;
+.theme-dark {
+    background: linear-gradient(to right, #2c3e50, #4a6070);
+    color: #fff;
+}
+
+.theme-gradient {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    color: #000;
 }

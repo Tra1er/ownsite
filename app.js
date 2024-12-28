@@ -42,10 +42,10 @@ function registerUser() {
 
     createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
-            alert("Registration Successful");
+            showNotification("Registration Successful", "success");
         })
         .catch((error) => {
-            alert(error.message);
+            showNotification(error.message, "error");
         });
 }
 
@@ -56,10 +56,10 @@ function loginUser() {
 
     signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-            alert("Login Successful");
+            showNotification("Login Successful", "success");
         })
         .catch((error) => {
-            alert(error.message);
+            showNotification(error.message, "error");
         });
 }
 
@@ -67,11 +67,26 @@ function loginUser() {
 function logoutUser() {
     signOut(auth)
         .then(() => {
-            alert("Logged Out Successfully");
+            showNotification("Logged Out Successfully", "success");
         })
         .catch((error) => {
-            alert(error.message);
+            showNotification(error.message, "error");
         });
+}
+
+// Show notification
+function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.classList.add('notification', type);
+    notification.textContent = message;
+    
+    // Append notification to body
+    document.body.appendChild(notification);
+    
+    // Automatically remove after 4 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 4000);
 }
 
 // Attach events to buttons

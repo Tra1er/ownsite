@@ -3,39 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Login</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .hidden { display: none; }
-        #theme-selector { margin-top: 10px; }
-        .theme-light { background: #f4f4f4; color: #000; }
-        .theme-dark { background: #333; color: #fff; }
-        .theme-gradient { background: linear-gradient(45deg, #ff9a9e, #fad0c4); color: #000; }
-    </style>
+    <title>Simple Login System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-light">
-    <h1>Simple Login System</h1>
-    <div id="welcome-message" class="hidden">Welcome, <span id="username"></span>!</div>
-    <button id="logout-btn" class="hidden">Log Out</button>
-    <div id="auth-forms">
-        <div id="register-form">
-            <h2>Register</h2>
-            <input type="text" id="reg-username" placeholder="Username" required>
-            <input type="password" id="reg-password" placeholder="Password" required>
-            <button id="register-btn">Register</button>
+    <div class="container">
+        <h1>Welcome to the Login System</h1>
+        <div id="welcome-message" class="hidden">
+            <h2>Welcome, <span id="username"></span>!</h2>
+            <button id="logout-btn">Log Out</button>
         </div>
-        <div id="login-form">
-            <h2>Login</h2>
-            <input type="text" id="login-username" placeholder="Username" required>
-            <input type="password" id="login-password" placeholder="Password" required>
-            <button id="login-btn">Login</button>
+
+        <div id="auth-forms">
+            <div id="register-form">
+                <h2>Register</h2>
+                <input type="text" id="reg-username" placeholder="Username" required>
+                <input type="password" id="reg-password" placeholder="Password" required>
+                <button id="register-btn">Register</button>
+            </div>
+            <div id="login-form">
+                <h2>Login</h2>
+                <input type="text" id="login-username" placeholder="Username" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button id="login-btn">Login</button>
+            </div>
         </div>
-    </div>
-    <div id="theme-selector">
-        <h3>Choose a Theme:</h3>
-        <button onclick="setTheme('theme-light')">Light</button>
-        <button onclick="setTheme('theme-dark')">Dark</button>
-        <button onclick="setTheme('theme-gradient')">Gradient</button>
+
+        <div id="theme-selector">
+            <h3>Choose a Theme:</h3>
+            <button onclick="setTheme('theme-light')">Light</button>
+            <button onclick="setTheme('theme-dark')">Dark</button>
+            <button onclick="setTheme('theme-gradient')">Gradient</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

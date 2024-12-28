@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy User System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link id="theme-style" rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to CozySpace</h1>
+            <nav>
+                <button onclick="showPage('register')">Register</button>
+                <button onclick="showPage('login')">Login</button>
+            </nav>
+        </header>
+
+        <section id="register" class="page">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <label for="regUsername">Username:</label>
+                <input type="text" id="regUsername" required>
+                <label for="regPassword">Password:</label>
+                <input type="password" id="regPassword" required>
+                <button type="submit">Register</button>
+            </form>
+            <button onclick="goBack()">Back</button>
+        </section>
+
+        <section id="login" class="page">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="loginUsername">Username:</label>
+                <input type="text" id="loginUsername" required>
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" required>
+                <button type="submit">Login</button>
+            </form>
+            <button onclick="goBack()">Back</button>
+        </section>
+
+        <section id="dashboard" class="page">
+            <h2>Welcome to your Dashboard</h2>
+            <p>Feel free to explore your personalized space!</p>
+            <button onclick="changeTheme()">Change Theme</button>
+            <button onclick="showPage('login')">Logout</button>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CozySpace. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

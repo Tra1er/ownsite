@@ -1,0 +1,107 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Auth Container */
+.auth-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Title */
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input Fields */
+.input-field {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: #ff7e5f;
+}
+
+/* Buttons */
+.btn {
+    padding: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff7e5f;
+    color: white;
+}
+
+.register-btn {
+    background-color: #feb47b;
+}
+
+.logout-btn {
+    background-color: #ff7e5f;
+}
+
+/* Logout Section */
+.logout-section h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.logout-btn {
+    background-color: #ff7e5f;
+    color: white;
+}
+
+/* Media Queries */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 30px;
+        width: 90%;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .input-field {
+        font-size: 0.9rem;
+    }
+    .btn {
+        font-size: 0.9rem;
+    }
+}

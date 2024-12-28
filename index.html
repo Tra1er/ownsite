@@ -3,67 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cozy User System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Login & Theme Switcher</title>
     <link id="theme-style" rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Welcome to CozySpace</h1>
-            <nav>
-                <div id="auth-links">
-                    <span id="username-display" style="display: none;"></span>
-                    <button onclick="showPage('register')" id="register-btn">Register</button>
-                    <button onclick="showPage('login')" id="login-btn">Login</button>
-                    <button onclick="logout()" id="logout-btn" style="display: none;">Logout</button>
-                </div>
+            <h1>Welcome to the Cool Site!</h1>
+            <div class="user-actions">
+                <button id="login-btn" onclick="showLoginPage()">Login</button>
+                <button id="register-btn" onclick="showRegisterPage()">Register</button>
+                <button id="logout-btn" onclick="logout()" style="display:none;">Logout</button>
+                <span id="username-display" style="display:none;"></span>
                 <button id="theme-btn" onclick="toggleThemeSelector()">Change Theme</button>
-                <div id="theme-selector" class="theme-selector">
-                    <button onclick="setTheme('cosy-theme')">Cosy</button>
-                    <button onclick="setTheme('cyberpunk-theme')">Cyberpunk</button>
-                    <button onclick="setTheme('modern-theme')">Modern</button>
-                    <button onclick="setTheme('classic-theme')">Classic</button>
-                    <button onclick="setTheme('retro-theme')">Retro</button>
-                    <button onclick="setTheme('vintage-theme')">Vintage</button>
-                </div>
-            </nav>
+            </div>
         </header>
+        
+        <div id="theme-selector" class="theme-selector">
+            <button onclick="setTheme('cosy-theme')">Cosy</button>
+            <button onclick="setTheme('cyberpunk-theme')">Cyberpunk</button>
+            <button onclick="setTheme('modern-theme')">Modern</button>
+            <button onclick="setTheme('classic-theme')">Classic</button>
+            <button onclick="setTheme('retro-theme')">Retro</button>
+        </div>
 
-        <section id="register" class="page">
-            <h2>Register</h2>
-            <form id="registerForm">
-                <label for="regUsername">Username:</label>
-                <input type="text" id="regUsername" required>
-                <label for="regPassword">Password:</label>
-                <input type="password" id="regPassword" required>
-                <button type="submit">Register</button>
-            </form>
-            <button onclick="goBack()">Back</button>
-        </section>
-
-        <section id="login" class="page">
+        <!-- Login Page -->
+        <div id="login-page" class="page">
             <h2>Login</h2>
-            <form id="loginForm">
-                <label for="loginUsername">Username:</label>
-                <input type="text" id="loginUsername" required>
-                <label for="loginPassword">Password:</label>
-                <input type="password" id="loginPassword" required>
-                <button type="submit">Login</button>
-            </form>
-            <button onclick="goBack()">Back</button>
-        </section>
+            <input type="text" id="login-username" placeholder="Username" />
+            <input type="password" id="login-password" placeholder="Password" />
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <span onclick="showRegisterPage()">Register here</span></p>
+        </div>
 
-        <section id="dashboard" class="page">
-            <h2>Welcome to your Dashboard</h2>
-            <p>Feel free to explore your personalized space!</p>
-            <button onclick="showPage('login')">Go to Login</button>
-        </section>
+        <!-- Register Page -->
+        <div id="register-page" class="page">
+            <h2>Register</h2>
+            <input type="text" id="register-username" placeholder="Username" />
+            <input type="password" id="register-password" placeholder="Password" />
+            <button onclick="register()">Register</button>
+            <p>Already have an account? <span onclick="showLoginPage()">Login here</span></p>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="dashboard" class="page">
+            <h2>Dashboard</h2>
+            <p>Welcome, <span id="dashboard-username"></span>!</p>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 CozySpace. All Rights Reserved.</p>
-    </footer>
+    <script src="script.js"></script>
 </body>
 </html>

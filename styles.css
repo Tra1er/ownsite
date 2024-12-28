@@ -8,7 +8,7 @@
 /* Body */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,89 +19,87 @@ body {
 /* Auth Container */
 .auth-container {
     background: #fff;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 40px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
 }
 
 /* Title */
 h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-weight: 600;
 }
 
 /* Form */
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
 /* Input Fields */
 .input-field {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
     font-size: 1rem;
     outline: none;
-    transition: border 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .input-field:focus {
-    border-color: #ff7e5f;
+    border-color: #2575fc;
+    box-shadow: 0 0 10px rgba(37, 117, 252, 0.5);
 }
 
 /* Buttons */
 .btn {
-    padding: 14px;
+    padding: 16px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #ff7e5f;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
     color: white;
 }
 
+.btn:hover {
+    background-color: #2575fc;
+    transform: scale(1.05);
+}
+
 .register-btn {
-    background-color: #feb47b;
+    background-color: #6a11cb;
 }
 
 .logout-btn {
-    background-color: #ff7e5f;
+    background-color: #2575fc;
 }
 
 /* Logout Section */
 .logout-section h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-.logout-btn {
-    background-color: #ff7e5f;
-    color: white;
-}
-
-/* Media Queries */
+/* Responsive Design */
 @media (max-width: 480px) {
     .auth-container {
         padding: 30px;
         width: 90%;
     }
     h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
     .input-field {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
     .btn {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 }

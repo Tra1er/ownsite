@@ -3,29 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supabase Auth</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Authentication App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="app">
-        <div id="auth-section">
-            <h1>Register or Login</h1>
-            <div id="register-form">
+        <!-- Header -->
+        <header>
+            <h1>Authentication App</h1>
+        </header>
+
+        <!-- Auth Section -->
+        <div id="auth">
+            <!-- Register Section -->
+            <div id="registerSection">
                 <h2>Register</h2>
-                <input type="email" id="regEmail" placeholder="Email">
-                <input type="password" id="regPassword" placeholder="Password">
-                <button onclick="registerUser()">Register</button>
+                <input id="regEmail" type="email" placeholder="Email">
+                <input id="regPassword" type="password" placeholder="Password">
+                <button id="registerBtn">Register</button>
             </div>
-            <div id="login-form">
+
+            <!-- Login Section -->
+            <div id="loginSection">
                 <h2>Login</h2>
-                <input type="email" id="loginEmail" placeholder="Email">
-                <input type="password" id="loginPassword" placeholder="Password">
-                <button onclick="loginUser()">Login</button>
+                <input id="loginEmail" type="email" placeholder="Email">
+                <input id="loginPassword" type="password" placeholder="Password">
+                <button id="loginBtn">Login</button>
             </div>
         </div>
-        <div id="user-section" style="display: none;">
-            <h1>Welcome, <span id="user-email"></span>!</h1>
-            <button onclick="logoutUser()">Logout</button>
+
+        <!-- User Section -->
+        <div id="userSection" style="display: none;">
+            <h2>Welcome, <span id="userName"></span>!</h2>
+            <button id="logoutBtn">Logout</button>
         </div>
     </div>
 

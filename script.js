@@ -1,80 +1,60 @@
-// Simulating a mock database using localStorage
-const usersDB = JSON.parse(localStorage.getItem('usersDB')) || [];
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+let users = JSON.parse(localStorage.getItem('users')) || [];
 
-document.getElementById('registerForm')?.addEventListener('submit', registerUser);
-document.getElementById('loginForm')?.addEventListener('submit', loginUser);
-document.getElementById('logout-btn')?.addEventListener('click', logout);
-
-function showPage(page) {
-    document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-    document.getElementById(page).style.display = 'block';
+function showLoginPage() {
+    document.getElementById('login-page').style.display = 'block';
+    document.getElementById('register-page').style.display = 'none';
 }
 
-function goBack() {
-    if (currentUser) {
-        showPage('dashboard');
-    } else {
-        showPage('login');
-    }
+function showRegisterPage() {
+    document.getElementById('register-page').style.display = 'block';
+    document.getElementById('login-page').style.display = 'none';
 }
 
-function registerUser(event) {
-    event.preventDefault();
-    
-    const username = document.getElementById('regUsername').value;
-    const password = document.getElementById('regPassword').value;
-    
-    if (username && password) {
-        usersDB.push({ username, password });
-        localStorage.setItem('usersDB', JSON.stringify(usersDB));
-        alert('Registration successful!');
-        showPage('login');
-    } else {
-        alert('Please fill out both fields');
-    }
-}
+function login() {
+    const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
 
-function loginUser(event) {
-    event.preventDefault();
-    
-    const username = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-    
-    const user = usersDB.find(u => u.username === username && u.password === password);
-    
+    const user = users.find(user => user.username === username && user.password === password);
+
     if (user) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        alert('Login successful!');
-        updateLoginStatus();
-        showPage('dashboard');
+        localStorage.setItem('loggedInUser', JSON.stringify(user));
+        showDashboard(user.username);
     } else {
         alert('Invalid credentials');
     }
 }
 
-function logout() {
-    localStorage.removeItem('currentUser');
-    updateLoginStatus();
-    showPage('login');
+function register() {
+    const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
+
+    if (users.some(user => user.username === username)) {
+        alert('Username already taken');
+    } else {
+        const newUser = { username, password };
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+        alert('Registration successful');
+        showLoginPage();
+    }
 }
 
-function updateLoginStatus() {
-    const loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
-    const usernameDisplay = document.getElementById('username-display');
-    
-    if (loggedInUser) {
-        document.getElementById('login-btn').style.display = 'none';
-        document.getElementById('register-btn').style.display = 'none';
-        document.getElementById('logout-btn').style.display = 'inline-block';
-        usernameDisplay.textContent = loggedInUser.username;
-        usernameDisplay.style.display = 'inline-block';
-    } else {
-        document.getElementById('login-btn').style.display = 'inline-block';
-        document.getElementById('register-btn').style.display = 'inline-block';
-        document.getElementById('logout-btn').style.display = 'none';
-        usernameDisplay.style.display = 'none';
-    }
+function showDashboard(username) {
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('register-page').style.display = 'none';
+    document.getElementById('username-display').style.display = 'none';
+    document.getElementById('logout-btn').style.display = 'inline-block';
+    document.getElementById('username-display').style.display = 'none';
+
+    document.getElementById('dashboard-username').innerText = username;
+}
+
+function logout() {
+    localStorage.removeItem('loggedInUser');
+    document.getElementById('logout-btn').style.display = 'none';
+    document.getElementById('username-display').style.display = 'none';
+    showLoginPage();
 }
 
 function toggleThemeSelector() {
@@ -90,5 +70,11 @@ function setTheme(theme) {
 window.onload = function () {
     const savedTheme = localStorage.getItem('theme') || 'cosy-theme';
     setTheme(savedTheme);
-    updateLoginStatus();
+
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (loggedInUser) {
+        showDashboard(loggedInUser.username);
+    } else {
+        showLoginPage();
+    }
 };

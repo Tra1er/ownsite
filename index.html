@@ -3,103 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supabase Login Example</title>
-    <!-- Load the Supabase SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.7.0/dist/umd/supabase.min.js"></script>
-    
-    <link rel="stylesheet" href="style.css"> <!-- Your custom CSS -->
+    <title>Firebase Authentication Example</title>
+    <!-- Firebase SDKs -->
+    <script type="module" src="app.js"></script>
 </head>
 <body>
-    <div id="auth">
-        <!-- Login Section -->
-        <h1>Login</h1>
-        <input type="email" id="loginEmail" placeholder="Email">
-        <input type="password" id="loginPassword" placeholder="Password">
-        <button id="loginBtn">Login</button>
+    <h1>Firebase Authentication</h1>
 
-        <!-- Register Section -->
-        <h1>Register</h1>
-        <input type="email" id="regEmail" placeholder="Email">
-        <input type="password" id="regPassword" placeholder="Password">
-        <button id="registerBtn">Register</button>
+    <div id="loginForm">
+        <input type="email" id="email" placeholder="Enter your email" />
+        <input type="password" id="password" placeholder="Enter your password" />
+        <button onclick="loginUser()">Login</button>
+        <button onclick="registerUser()">Register</button>
     </div>
 
-    <!-- User Section after login -->
-    <div id="userSection" style="display: none;">
-        <h1>Welcome, <span id="userName"></span></h1>
-        <button id="logoutBtn">Logout</button>
+    <div id="logoutSection" style="display:none;">
+        <h2>Welcome, <span id="userName"></span></h2>
+        <button onclick="logoutUser()">Logout</button>
     </div>
-
-    <!-- Your JavaScript -->
-    <script>
-        // Initialize Supabase client AFTER the SDK is loaded
-        const supabase = supabase.createClient(
-            'https://ynglngyvvsrmxxfkenyy.supabase.co', // Your Supabase URL
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InluZ2xuZ3l2dnNybXh4Zmtlbnl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU0MTQ4ODMsImV4cCI6MjA1MDk5MDg4M30.L6xiq6z2gFhnE_mi2JoGEua5o43wosW5fEHhyndnRU4' // Your Supabase Key
-        );
-
-        // Register user
-        document.getElementById('registerBtn').addEventListener('click', async () => {
-            const email = document.getElementById('regEmail').value;
-            const password = document.getElementById('regPassword').value;
-
-            if (!email || !password) {
-                alert('Please fill in both email and password to register.');
-                return;
-            }
-
-            const { error } = await supabase.auth.signUp({ email, password });
-            if (error) {
-                alert('Registration failed: ' + error.message);
-            } else {
-                alert('Registration successful! Please log in.');
-            }
-        });
-
-        // Login user
-        document.getElementById('loginBtn').addEventListener('click', async () => {
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-
-            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-            if (error) {
-                alert('Login failed: ' + error.message);
-            } else {
-                showUser(data.user.email);
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('userEmail', data.user.email);
-            }
-        });
-
-        // Logout user
-        document.getElementById('logoutBtn').addEventListener('click', () => {
-            supabase.auth.signOut();
-            hideUser();
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userEmail');
-        });
-
-        // Show user section
-        function showUser(email) {
-            document.getElementById('auth').style.display = 'none';
-            document.getElementById('userSection').style.display = 'block';
-            document.getElementById('userName').textContent = email;
-        }
-
-        // Hide user section
-        function hideUser() {
-            document.getElementById('auth').style.display = 'block';
-            document.getElementById('userSection').style.display = 'none';
-        }
-
-        // Check if logged in on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            const userEmail = localStorage.getItem('userEmail');
-            if (isLoggedIn && userEmail) {
-                showUser(userEmail);
-            }
-        });
-    </script>
 </body>
 </html>

@@ -19,6 +19,7 @@ function getUser() {
 }
 
 function setLoggedIn(username) {
+    localStorage.setItem('isLoggedIn', 'true');
     welcomeMessage.classList.remove('hidden');
     usernameSpan.textContent = username;
     logoutBtn.classList.remove('hidden');
@@ -27,6 +28,7 @@ function setLoggedIn(username) {
 }
 
 function setLoggedOut() {
+    localStorage.setItem('isLoggedIn', 'false');
     welcomeMessage.classList.add('hidden');
     logoutBtn.classList.add('hidden');
     registerForm.classList.remove('hidden');
@@ -63,9 +65,13 @@ logoutBtn.addEventListener('click', () => {
 // Theme Selector
 function setTheme(theme) {
     document.body.className = theme;
+    localStorage.setItem('theme', theme);
 }
 
 // Initialize
-if (getUser()) {
+if (localStorage.getItem('isLoggedIn') === 'true' && getUser()) {
     setLoggedIn(getUser().username);
 }
+
+const savedTheme = localStorage.getItem('theme') || 'theme-light';
+setTheme(savedTheme);

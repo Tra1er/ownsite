@@ -1,80 +1,84 @@
-let users = JSON.parse(localStorage.getItem('users')) || [];
+// Set default theme to "cosy"
+let currentTheme = localStorage.getItem('theme') || 'cosy';
+applyTheme(currentTheme);
 
-function showLoginPage() {
-    document.getElementById('login-page').style.display = 'block';
-    document.getElementById('register-page').style.display = 'none';
+// Toggle login and register forms
+function toggleLogin() {
+  document.querySelector('.login-form').style.display = 'block';
+  document.querySelector('.register-form').style.display = 'none';
 }
 
-function showRegisterPage() {
-    document.getElementById('register-page').style.display = 'block';
-    document.getElementById('login-page').style.display = 'none';
+function toggleRegister() {
+  document.querySelector('.login-form').style.display = 'none';
+  document.querySelector('.register-form').style.display = 'block';
 }
 
-function login() {
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
-
-    const user = users.find(user => user.username === username && user.password === password);
-
-    if (user) {
-        localStorage.setItem('loggedInUser', JSON.stringify(user));
-        showDashboard(user.username);
-    } else {
-        alert('Invalid credentials');
-    }
-}
-
+// Register a new user
 function register() {
-    const username = document.getElementById('register-username').value;
-    const password = document.getElementById('register-password').value;
+  const username = document.getElementById('register-username').value;
+  const password = document.getElementById('register-password').value;
 
-    if (users.some(user => user.username === username)) {
-        alert('Username already taken');
-    } else {
-        const newUser = { username, password };
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
-        alert('Registration successful');
-        showLoginPage();
-    }
+  if (!username || !password) {
+    alert('Please fill out both fields');
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  users.push({ username, password });
+  localStorage.setItem('users', JSON.stringify(users));
+
+  alert('Registration successful! You can now log in.');
+  toggleLogin();
 }
 
-function showDashboard(username) {
-    document.getElementById('dashboard').style.display = 'block';
-    document.getElementById('login-page').style.display = 'none';
-    document.getElementById('register-page').style.display = 'none';
-    document.getElementById('username-display').style.display = 'none';
-    document.getElementById('logout-btn').style.display = 'inline-block';
-    document.getElementById('username-display').style.display = 'none';
+// Log in a user
+function login() {
+  const username = document.getElementById('login-username').value;
+  const password = document.getElementById('login-password').value;
 
-    document.getElementById('dashboard-username').innerText = username;
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  const user = users.find(u => u.username === username && u.password === password);
+
+  if (user) {
+    localStorage.setItem('loggedInUser', JSON.stringify(user));
+    document.getElementById('user-name').textContent = `Welcome, ${user.username}!`;
+    showDashboard();
+  } else {
+    alert('Invalid credentials');
+  }
 }
 
+// Show the dashboard
+function showDashboard() {
+  document.querySelector('.login-form').style.display = 'none';
+  document.querySelector('.register-form').style.display = 'none';
+  document.querySelector('.dashboard').style.display = 'block';
+
+  document.querySelector('.logout-btn').style.display = 'inline-block';
+  document.querySelector('.login-btn').style.display = 'none';
+  document.querySelector('.register-btn').style.display = 'none';
+}
+
+// Log out the user
 function logout() {
-    localStorage.removeItem('loggedInUser');
-    document.getElementById('logout-btn').style.display = 'none';
-    document.getElementById('username-display').style.display = 'none';
-    showLoginPage();
+  localStorage.removeItem('loggedInUser');
+  document.querySelector('.logout-btn').style.display = 'none';
+  document.querySelector('.login-btn').style.display = 'inline-block';
+  document.querySelector('.register-btn').style.display = 'inline-block';
+  document.querySelector('.dashboard').style.display = 'none';
+  toggleLogin();
 }
 
-function toggleThemeSelector() {
-    const themeSelector = document.getElementById('theme-selector');
-    themeSelector.style.display = themeSelector.style.display === 'none' ? 'block' : 'none';
+// Change the theme
+function changeTheme(theme) {
+  localStorage.setItem('theme', theme);
+  applyTheme(theme);
 }
 
-function setTheme(theme) {
-    document.getElementById('theme-style').setAttribute('href', theme + '.css');
-    localStorage.setItem('theme', theme);
+// Apply the selected theme
+function applyTheme(theme) {
+  document.body.className = theme;
+  const buttons = document.querySelectorAll('.theme-btn');
+  buttons.forEach(button => button.classList.remove('cosy', 'cyberpunk', 'modern', 'classic', 'retro'));
+  buttons.forEach(button => button.classList.add(theme));
 }
-
-window.onload = function () {
-    const savedTheme = localStorage.getItem('theme') || 'cosy-theme';
-    setTheme(savedTheme);
-
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    if (loggedInUser) {
-        showDashboard(loggedInUser.username);
-    } else {
-        showLoginPage();
-    }
-};

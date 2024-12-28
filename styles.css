@@ -14,6 +14,7 @@ body {
     align-items: center;
     height: 100vh;
     text-align: center;
+    position: relative;
 }
 
 /* Auth Container */
@@ -101,5 +102,53 @@ h1 {
     }
     .btn {
         font-size: 1rem;
+    }
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 300px;
+    width: auto;
+    text-align: center;
+    opacity: 0;
+    animation: slideIn 0.5s forwards, fadeOut 3s 3s forwards;
+}
+
+.notification.success {
+    background-color: #4CAF50; /* Green */
+}
+
+.notification.error {
+    background-color: #f44336; /* Red */
+}
+
+/* Slide In and Fade Out Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }

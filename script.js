@@ -1,6 +1,7 @@
+// Initialize Supabase client - This should be the first thing in your script
 const supabase = supabase.createClient(
-    'https://ynglngyvvsrmxxfkenyy.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InluZ2xuZ3l2dnNybXh4Zmtlbnl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU0MTQ4ODMsImV4cCI6MjA1MDk5MDg4M30.L6xiq6z2gFhnE_mi2JoGEua5o43wosW5fEHhyndnRU4'
+    'https://ynglngyvvsrmxxfkenyy.supabase.co', // your Supabase URL
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InluZ2xuZ3l2dnNybXh4Zmtlbnl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU0MTQ4ODMsImV4cCI6MjA1MDk5MDg4M30.L6xiq6z2gFhnE_mi2JoGEua5o43wosW5fEHhyndnRU4' // your Supabase key
 );
 
 // Register user

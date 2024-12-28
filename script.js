@@ -1,77 +1,59 @@
-// Elements
-const registerForm = document.getElementById('register-form');
-const loginForm = document.getElementById('login-form');
-const welcomeMessage = document.getElementById('welcome-message');
-const usernameSpan = document.getElementById('username');
-const logoutBtn = document.getElementById('logout-btn');
-const regUsername = document.getElementById('reg-username');
-const regPassword = document.getElementById('reg-password');
-const loginUsername = document.getElementById('login-username');
-const loginPassword = document.getElementById('login-password');
+const supabase = supabase.createClient(
+    'https://ynglngyvvsrmxxfkenyy.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InluZ2xuZ3l2dnNybXh4Zmtlbnl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU0MTQ4ODMsImV4cCI6MjA1MDk5MDg4M30.L6xiq6z2gFhnE_mi2JoGEua5o43wosW5fEHhyndnRU4'
+);
 
-// Functions
-function saveUser(username, password) {
-    localStorage.setItem('user', JSON.stringify({ username, password }));
+async function registerUser() {
+    const email = document.getElementById('regEmail').value;
+    const password = document.getElementById('regPassword').value;
+
+    const { error } = await supabase.auth.signUp({ email, password });
+    if (error) {
+        alert('Registration failed: ' + error.message);
+    } else {
+        alert('Registration successful! Please log in.');
+    }
 }
 
-function getUser() {
-    return JSON.parse(localStorage.getItem('user'));
+async function loginUser() {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+        alert('Login failed: ' + error.message);
+    } else {
+        setLoggedIn(data.user.email);
+    }
 }
 
-function setLoggedIn(username) {
-    localStorage.setItem('isLoggedIn', 'true');
-    welcomeMessage.classList.remove('hidden');
-    usernameSpan.textContent = username;
-    logoutBtn.classList.remove('hidden');
-    registerForm.classList.add('hidden');
-    loginForm.classList.add('hidden');
+async function logoutUser() {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+        alert('Logout failed: ' + error.message);
+    } else {
+        setLoggedOut();
+    }
+}
+
+function setLoggedIn(email) {
+    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('user-section').style.display = 'block';
+    document.getElementById('user-email').textContent = email;
 }
 
 function setLoggedOut() {
-    localStorage.setItem('isLoggedIn', 'false');
-    welcomeMessage.classList.add('hidden');
-    logoutBtn.classList.add('hidden');
-    registerForm.classList.remove('hidden');
-    loginForm.classList.remove('hidden');
+    document.getElementById('auth-section').style.display = 'block';
+    document.getElementById('user-section').style.display = 'none';
 }
 
-// Event Listeners
-document.getElementById('register-btn').addEventListener('click', () => {
-    const username = regUsername.value;
-    const password = regPassword.value;
-    if (username && password) {
-        saveUser(username, password);
-        alert('Registration successful!');
+async function checkSession() {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) {
+        setLoggedIn(data.session.user.email);
     } else {
-        alert('Please fill out both fields.');
+        setLoggedOut();
     }
-});
-
-document.getElementById('login-btn').addEventListener('click', () => {
-    const username = loginUsername.value;
-    const password = loginPassword.value;
-    const user = getUser();
-    if (user && user.username === username && user.password === password) {
-        setLoggedIn(username);
-    } else {
-        alert('Invalid credentials.');
-    }
-});
-
-logoutBtn.addEventListener('click', () => {
-    setLoggedOut();
-});
-
-// Theme Selector
-function setTheme(theme) {
-    document.body.className = theme;
-    localStorage.setItem('theme', theme);
 }
 
-// Initialize
-if (localStorage.getItem('isLoggedIn') === 'true' && getUser()) {
-    setLoggedIn(getUser().username);
-}
-
-const savedTheme = localStorage.getItem('theme') || 'theme-light';
-setTheme(savedTheme);
+checkSession();

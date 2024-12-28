@@ -1,48 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cool Site</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .hidden { display: none; }
+        #theme-selector { margin-top: 10px; }
+        .theme-light { background: #f4f4f4; color: #000; }
+        .theme-dark { background: #333; color: #fff; }
+        .theme-gradient { background: linear-gradient(45deg, #ff9a9e, #fad0c4); color: #000; }
+    </style>
 </head>
-<body>
-  <div class="header">
-    <h1>Welcome to the Cool Site!</h1>
-    <div class="header-buttons">
-      <button class="theme-btn" onclick="changeTheme('cosy')">Cosy</button>
-      <button class="theme-btn" onclick="changeTheme('cyberpunk')">Cyberpunk</button>
-      <button class="theme-btn" onclick="changeTheme('modern')">Modern</button>
-      <button class="theme-btn" onclick="changeTheme('classic')">Classic</button>
-      <button class="theme-btn" onclick="changeTheme('retro')">Retro</button>
-      <button class="login-btn" onclick="toggleLogin()">Login</button>
-      <button class="register-btn" onclick="toggleRegister()">Register</button>
-      <button class="logout-btn" onclick="logout()" style="display:none;">Logout</button>
+<body class="theme-light">
+    <h1>Simple Login System</h1>
+    <div id="welcome-message" class="hidden">Welcome, <span id="username"></span>!</div>
+    <button id="logout-btn" class="hidden">Log Out</button>
+    <div id="auth-forms">
+        <div id="register-form">
+            <h2>Register</h2>
+            <input type="text" id="reg-username" placeholder="Username" required>
+            <input type="password" id="reg-password" placeholder="Password" required>
+            <button id="register-btn">Register</button>
+        </div>
+        <div id="login-form">
+            <h2>Login</h2>
+            <input type="text" id="login-username" placeholder="Username" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <button id="login-btn">Login</button>
+        </div>
     </div>
-  </div>
-
-  <div class="main-content">
-    <div class="login-form">
-      <h2>Login</h2>
-      <input type="text" id="login-username" placeholder="Username">
-      <input type="password" id="login-password" placeholder="Password">
-      <button onclick="login()">Login</button>
-      <p>Don't have an account? <span onclick="toggleRegister()">Register here</span></p>
+    <div id="theme-selector">
+        <h3>Choose a Theme:</h3>
+        <button onclick="setTheme('theme-light')">Light</button>
+        <button onclick="setTheme('theme-dark')">Dark</button>
+        <button onclick="setTheme('theme-gradient')">Gradient</button>
     </div>
-
-    <div class="register-form" style="display: none;">
-      <h2>Register</h2>
-      <input type="text" id="register-username" placeholder="Username">
-      <input type="password" id="register-password" placeholder="Password">
-      <button onclick="register()">Register</button>
-      <p>Already have an account? <span onclick="toggleLogin()">Login here</span></p>
-    </div>
-
-    <div class="dashboard" style="display: none;">
-      <h2 id="user-name">Welcome, !</h2>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

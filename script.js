@@ -1,84 +1,71 @@
-// Set default theme to "cosy"
-let currentTheme = localStorage.getItem('theme') || 'cosy';
-applyTheme(currentTheme);
+// Elements
+const registerForm = document.getElementById('register-form');
+const loginForm = document.getElementById('login-form');
+const welcomeMessage = document.getElementById('welcome-message');
+const usernameSpan = document.getElementById('username');
+const logoutBtn = document.getElementById('logout-btn');
+const regUsername = document.getElementById('reg-username');
+const regPassword = document.getElementById('reg-password');
+const loginUsername = document.getElementById('login-username');
+const loginPassword = document.getElementById('login-password');
 
-// Toggle login and register forms
-function toggleLogin() {
-  document.querySelector('.login-form').style.display = 'block';
-  document.querySelector('.register-form').style.display = 'none';
+// Functions
+function saveUser(username, password) {
+    localStorage.setItem('user', JSON.stringify({ username, password }));
 }
 
-function toggleRegister() {
-  document.querySelector('.login-form').style.display = 'none';
-  document.querySelector('.register-form').style.display = 'block';
+function getUser() {
+    return JSON.parse(localStorage.getItem('user'));
 }
 
-// Register a new user
-function register() {
-  const username = document.getElementById('register-username').value;
-  const password = document.getElementById('register-password').value;
-
-  if (!username || !password) {
-    alert('Please fill out both fields');
-    return;
-  }
-
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-  users.push({ username, password });
-  localStorage.setItem('users', JSON.stringify(users));
-
-  alert('Registration successful! You can now log in.');
-  toggleLogin();
+function setLoggedIn(username) {
+    welcomeMessage.classList.remove('hidden');
+    usernameSpan.textContent = username;
+    logoutBtn.classList.remove('hidden');
+    registerForm.classList.add('hidden');
+    loginForm.classList.add('hidden');
 }
 
-// Log in a user
-function login() {
-  const username = document.getElementById('login-username').value;
-  const password = document.getElementById('login-password').value;
-
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-  const user = users.find(u => u.username === username && u.password === password);
-
-  if (user) {
-    localStorage.setItem('loggedInUser', JSON.stringify(user));
-    document.getElementById('user-name').textContent = `Welcome, ${user.username}!`;
-    showDashboard();
-  } else {
-    alert('Invalid credentials');
-  }
+function setLoggedOut() {
+    welcomeMessage.classList.add('hidden');
+    logoutBtn.classList.add('hidden');
+    registerForm.classList.remove('hidden');
+    loginForm.classList.remove('hidden');
 }
 
-// Show the dashboard
-function showDashboard() {
-  document.querySelector('.login-form').style.display = 'none';
-  document.querySelector('.register-form').style.display = 'none';
-  document.querySelector('.dashboard').style.display = 'block';
+// Event Listeners
+document.getElementById('register-btn').addEventListener('click', () => {
+    const username = regUsername.value;
+    const password = regPassword.value;
+    if (username && password) {
+        saveUser(username, password);
+        alert('Registration successful!');
+    } else {
+        alert('Please fill out both fields.');
+    }
+});
 
-  document.querySelector('.logout-btn').style.display = 'inline-block';
-  document.querySelector('.login-btn').style.display = 'none';
-  document.querySelector('.register-btn').style.display = 'none';
+document.getElementById('login-btn').addEventListener('click', () => {
+    const username = loginUsername.value;
+    const password = loginPassword.value;
+    const user = getUser();
+    if (user && user.username === username && user.password === password) {
+        setLoggedIn(username);
+    } else {
+        alert('Invalid credentials.');
+    }
+});
+
+logoutBtn.addEventListener('click', () => {
+    setLoggedOut();
+});
+
+// Theme Selector
+function setTheme(theme) {
+    document.body.className = theme;
 }
 
-// Log out the user
-function logout() {
-  localStorage.removeItem('loggedInUser');
-  document.querySelector('.logout-btn').style.display = 'none';
-  document.querySelector('.login-btn').style.display = 'inline-block';
-  document.querySelector('.register-btn').style.display = 'inline-block';
-  document.querySelector('.dashboard').style.display = 'none';
-  toggleLogin();
-}
-
-// Change the theme
-function changeTheme(theme) {
-  localStorage.setItem('theme', theme);
-  applyTheme(theme);
-}
-
-// Apply the selected theme
-function applyTheme(theme) {
-  document.body.className = theme;
-  const buttons = document.querySelectorAll('.theme-btn');
-  buttons.forEach(button => button.classList.remove('cosy', 'cyberpunk', 'modern', 'classic', 'retro'));
-  buttons.forEach(button => button.classList.add(theme));
+// Initialize
+if (getUser()) {
+    setLoggedIn(getUser().username);
 }

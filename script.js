@@ -61,14 +61,19 @@ function logout() {
 
 function updateLoginStatus() {
     const loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+    const usernameDisplay = document.getElementById('username-display');
+    
     if (loggedInUser) {
         document.getElementById('login-btn').style.display = 'none';
         document.getElementById('register-btn').style.display = 'none';
         document.getElementById('logout-btn').style.display = 'inline-block';
+        usernameDisplay.textContent = loggedInUser.username;
+        usernameDisplay.style.display = 'inline-block';
     } else {
         document.getElementById('login-btn').style.display = 'inline-block';
         document.getElementById('register-btn').style.display = 'inline-block';
         document.getElementById('logout-btn').style.display = 'none';
+        usernameDisplay.style.display = 'none';
     }
 }
 

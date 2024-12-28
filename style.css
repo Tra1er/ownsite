@@ -3,73 +3,40 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    transition: background 0.5s, color 0.5s;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: white;
 }
 
-h1 {
-    margin-bottom: 20px;
+#app {
     text-align: center;
-    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-h2, h3 {
-    color: #fff;
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
 }
 
 button {
     padding: 10px 20px;
-    margin: 10px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    background: #2575fc;
+    color: white;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    font-size: 16px;
+    margin-top: 10px;
 }
 
 button:hover {
-    transform: scale(1.05);
-}
-
-input {
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 200px;
-}
-
-.container {
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.hidden {
-    display: none;
-}
-
-#theme-selector button {
-    margin: 5px;
-}
-
-/* Themes */
-.theme-light {
-    background: linear-gradient(to right, #f0f8ff, #d7e9f7);
-    color: #333;
-}
-
-.theme-dark {
-    background: linear-gradient(to right, #2c3e50, #4a6070);
-    color: #fff;
-}
-
-.theme-gradient {
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-    color: #000;
+    background: #6a11cb;
 }

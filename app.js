@@ -19,22 +19,19 @@ const auth = getAuth(app);
 
 // Check for user state changes
 onAuthStateChanged(auth, (user) => {
-    const loggedInEmail = document.getElementById("loggedInEmail");
+    const userName = document.getElementById("userName");
     const loginForm = document.getElementById("loginForm");
     const logoutSection = document.getElementById("logoutSection");
-    const extraContent = document.getElementById("extraContent");
     
     if (user) {
         // User is logged in
-        loggedInEmail.textContent = `Logged in as: ${user.email}`;
+        userName.textContent = user.email;
         loginForm.style.display = "none"; // Hide login form
         logoutSection.style.display = "block"; // Show logout section
-        extraContent.style.display = "block"; // Show extra content after login
     } else {
         // User is logged out
         loginForm.style.display = "block"; // Show login form
         logoutSection.style.display = "none"; // Hide logout section
-        extraContent.style.display = "none"; // Hide extra content
     }
 });
 
@@ -48,8 +45,7 @@ function registerUser() {
             showNotification("Registration Successful", "success");
         })
         .catch((error) => {
-            const errorMessage = error.message;
-            showNotification(errorMessage, "error");
+            showNotification(error.message, "error");
         });
 }
 
@@ -63,37 +59,37 @@ function loginUser() {
             showNotification("Login Successful", "success");
         })
         .catch((error) => {
-            const errorMessage = error.message;
-            showNotification(errorMessage, "error");
+            showNotification(error.message, "error");
         });
 }
 
-// Logout function
+// Log out function
 function logoutUser() {
     signOut(auth)
         .then(() => {
-            showNotification("Logged out successfully", "success");
+            showNotification("Logged Out Successfully", "success");
         })
         .catch((error) => {
-            const errorMessage = error.message;
-            showNotification(errorMessage, "error");
+            showNotification(error.message, "error");
         });
 }
 
-// Notification function
+// Show notification
 function showNotification(message, type) {
-    const notification = document.createElement("div");
-    notification.classList.add("notification", type);
-    notification.innerText = message;
-
+    const notification = document.createElement('div');
+    notification.classList.add('notification', type);
+    notification.textContent = message;
+    
+    // Append notification to body
     document.body.appendChild(notification);
-
+    
+    // Automatically remove after 4 seconds
     setTimeout(() => {
         notification.remove();
     }, 4000);
 }
 
-// Event listeners for buttons
+// Attach events to buttons
 document.getElementById("loginBtn").addEventListener("click", loginUser);
 document.getElementById("registerBtn").addEventListener("click", registerUser);
-document.getElementById("logoutBtn").addEventListener("click", logoutUser);
+document.getElementById("logoutBtn").addEventListener("click", logoutUser); // Ensure that this is wired up correctly

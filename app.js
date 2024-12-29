@@ -22,12 +22,14 @@ onAuthStateChanged(auth, (user) => {
     const userName = document.getElementById("userName");
     const loginForm = document.getElementById("loginForm");
     const logoutSection = document.getElementById("logoutSection");
-
+    
     if (user) {
         // User is logged in
         userName.textContent = user.email;
         loginForm.style.display = "none"; // Hide login form
         logoutSection.style.display = "block"; // Show logout section
+        // Redirect to dashboard page
+        window.location.href = "dashboard.html"; 
     } else {
         // User is logged out
         loginForm.style.display = "block"; // Show login form
@@ -57,8 +59,6 @@ function loginUser() {
     signInWithEmailAndPassword(auth, email, password)
         .then(() => {
             showNotification("Login Successful", "success");
-            // Redirect to dashboard after login
-            window.location.href = "dashboard.html";  // This redirects the user to the subpage
         })
         .catch((error) => {
             showNotification(error.message, "error");
@@ -70,8 +70,7 @@ function logoutUser() {
     signOut(auth)
         .then(() => {
             showNotification("Logged Out Successfully", "success");
-            // Redirect to login page after logging out
-            window.location.href = "index.html";  // Redirect to the login page
+            window.location.href = "index.html"; // Redirect to login page
         })
         .catch((error) => {
             showNotification(error.message, "error");
@@ -83,10 +82,10 @@ function showNotification(message, type) {
     const notification = document.createElement('div');
     notification.classList.add('notification', type);
     notification.textContent = message;
-
+    
     // Append notification to body
     document.body.appendChild(notification);
-
+    
     // Automatically remove after 4 seconds
     setTimeout(() => {
         notification.remove();
@@ -96,4 +95,4 @@ function showNotification(message, type) {
 // Attach events to buttons
 document.getElementById("loginBtn").addEventListener("click", loginUser);
 document.getElementById("registerBtn").addEventListener("click", registerUser);
-document.getElementById("logoutBtn").addEventListener("click", logoutUser); // Ensure that this is wired up correctly
+document.getElementById("logoutBtn").addEventListener("click", logoutUser); 

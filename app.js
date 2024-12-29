@@ -1,4 +1,3 @@
-// Import the necessary Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
@@ -49,7 +48,6 @@ function registerUser() {
             showNotification("Registration Successful", "success");
         })
         .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
             showNotification(errorMessage, "error");
         });
@@ -65,7 +63,6 @@ function loginUser() {
             showNotification("Login Successful", "success");
         })
         .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
             showNotification(errorMessage, "error");
         });
@@ -78,7 +75,6 @@ function logoutUser() {
             showNotification("Logged out successfully", "success");
         })
         .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
             showNotification(errorMessage, "error");
         });
@@ -92,7 +88,6 @@ function showNotification(message, type) {
 
     document.body.appendChild(notification);
 
-    // Automatically remove notification after a few seconds
     setTimeout(() => {
         notification.remove();
     }, 4000);

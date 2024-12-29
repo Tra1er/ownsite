@@ -1,8 +1,8 @@
-// Import necessary Firebase SDKs
+// Import the necessary Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
-// Your Firebase configuration
+// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCaustScS6rJo-x_XVGy3S0NXktJ_MoaI4",
     authDomain: "ownsite-80538.firebaseapp.com",
@@ -19,10 +19,10 @@ const auth = getAuth(app);
 
 // Check for user state changes
 onAuthStateChanged(auth, (user) => {
+    const userName = document.getElementById("userName");
     const loginForm = document.getElementById("loginForm");
     const logoutSection = document.getElementById("logoutSection");
-    const userName = document.getElementById("userName");
-    
+
     if (user) {
         // User is logged in
         userName.textContent = user.email;
@@ -57,8 +57,8 @@ function loginUser() {
     signInWithEmailAndPassword(auth, email, password)
         .then(() => {
             showNotification("Login Successful", "success");
-            // Redirect to dashboard after successful login
-            window.location.href = "dashboard.html";  // Redirect to dashboard
+            // Redirect to dashboard after login
+            window.location.href = "dashboard.html";  // This redirects the user to the subpage
         })
         .catch((error) => {
             showNotification(error.message, "error");
@@ -70,8 +70,8 @@ function logoutUser() {
     signOut(auth)
         .then(() => {
             showNotification("Logged Out Successfully", "success");
-            // Redirect to login page after logout
-            window.location.href = "index.html"; // Redirect to login
+            // Redirect to login page after logging out
+            window.location.href = "index.html";  // Redirect to the login page
         })
         .catch((error) => {
             showNotification(error.message, "error");
@@ -83,10 +83,10 @@ function showNotification(message, type) {
     const notification = document.createElement('div');
     notification.classList.add('notification', type);
     notification.textContent = message;
-    
+
     // Append notification to body
     document.body.appendChild(notification);
-    
+
     // Automatically remove after 4 seconds
     setTimeout(() => {
         notification.remove();

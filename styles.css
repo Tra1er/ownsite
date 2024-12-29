@@ -1,91 +1,160 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #1c1e26;
-    color: #f8f8f2;
+/* General Reset */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.auth-container {
-    background-color: #282a36;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 300px;
+    position: relative;
 }
 
+/* Auth Container */
+.auth-container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Title */
+h1 {
+    font-size: 3rem; /* Increased for better emphasis */
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* Form */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Increased gap */
+}
+
+/* Input Fields */
 .input-field {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #44475a;
-    background-color: #44475a;
-    color: #f8f8f2;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
+.input-field:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 10px rgba(37, 117, 252, 0.5);
+    background-color: #f0f8ff; /* Light background change */
+}
+
+/* Buttons */
 .btn {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+    padding: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    color: white;
 }
 
-.login-btn {
-    background-color: #50fa7b;
-    color: #282a36;
+.btn:hover {
+    background-color: #2575fc;
+    transform: scale(1.1); /* Slightly larger scale */
 }
 
 .register-btn {
-    background-color: #ff5555;
-    color: #f8f8f2;
+    background-color: #6a11cb;
 }
 
 .logout-btn {
-    background-color: #8be9fd;
-    color: #282a36;
+    background-color: #2575fc;
 }
 
-.reset-btn {
-    background-color: #f1fa8c;
-    color: #282a36;
+/* Logout Section */
+.logout-section h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 25px;
 }
 
-.forgot-password {
-    display: block;
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #8be9fd;
-    text-decoration: none;
+.logout-section h2:hover {
+    color: #2575fc;
+    cursor: pointer;
 }
 
-.forgot-password:hover {
-    color: #50fa7b;
+/* Responsive Design */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 30px;
+        width: 90%;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    .input-field {
+        font-size: 1rem;
+    }
+    .btn {
+        font-size: 1rem;
+    }
 }
 
+/* Notification Styles */
 .notification {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    padding: 10px 20px;
-    background-color: #282a36;
-    color: #f8f8f2;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    opacity: 0.9;
+    background-color: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 350px; /* Increased max-width */
+    width: auto;
+    text-align: center;
+    opacity: 0;
+    animation: slideIn 0.5s forwards, fadeOut 3s 3s forwards;
 }
 
 .notification.success {
-    background-color: #50fa7b;
+    background-color: #4CAF50; /* Green */
 }
 
 .notification.error {
-    background-color: #ff5555;
+    background-color: #f44336; /* Red */
+}
+
+/* Slide In and Fade Out Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }

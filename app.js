@@ -1,3 +1,4 @@
+// Import the necessary Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
@@ -18,10 +19,9 @@ const auth = getAuth(app);
 
 // Check for user state changes
 onAuthStateChanged(auth, (user) => {
-    const userName = document.getElementById("userName");
+    const loggedInEmail = document.getElementById("loggedInEmail");
     const loginForm = document.getElementById("loginForm");
     const logoutSection = document.getElementById("logoutSection");
-    const loggedInEmail = document.getElementById("loggedInEmail");
     const extraContent = document.getElementById("extraContent");
     
     if (user) {
@@ -93,7 +93,7 @@ function showNotification(message, type) {
     }, 4000);
 }
 
-// Event listeners
+// Event listeners for buttons
 document.getElementById("loginBtn").addEventListener("click", loginUser);
 document.getElementById("registerBtn").addEventListener("click", registerUser);
 document.getElementById("logoutBtn").addEventListener("click", logoutUser);

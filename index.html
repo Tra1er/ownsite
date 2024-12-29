@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="dashboard-container">
-        <!-- Top Right Header -->
-        <div class="header">
-            <span id="userEmail"></span>
-            <button id="logoutBtn" class="btn logout-btn">Logout</button>
-        </div>
-
-        <!-- Content of the Dashboard -->
-        <div class="content">
-            <h2>Welcome to your Dashboard!</h2>
-            <p>This is the page where you can manage your account.</p>
-            <p>Feel free to add more content here.</p>
+    <div class="auth-container" id="loginForm">
+        <h1>Login</h1>
+        <div class="form-container">
+            <input type="email" id="email" class="input-field" placeholder="Email" required>
+            <input type="password" id="password" class="input-field" placeholder="Password" required>
+            <button id="loginBtn" class="btn">Login</button>
+            <button id="registerBtn" class="btn register-btn">Register</button>
         </div>
     </div>
 
-    <script type="module" src="dashboard.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

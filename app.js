@@ -49,7 +49,9 @@ function registerUser() {
             showNotification("Registration Successful", "success");
         })
         .catch((error) => {
-            showNotification(error.message, "error");
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            showNotification(errorMessage, "error");
         });
 }
 
@@ -63,37 +65,40 @@ function loginUser() {
             showNotification("Login Successful", "success");
         })
         .catch((error) => {
-            showNotification(error.message, "error");
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            showNotification(errorMessage, "error");
         });
 }
 
-// Log out function
+// Logout function
 function logoutUser() {
     signOut(auth)
         .then(() => {
-            showNotification("Logged Out Successfully", "success");
+            showNotification("Logged out successfully", "success");
         })
         .catch((error) => {
-            showNotification(error.message, "error");
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            showNotification(errorMessage, "error");
         });
 }
 
-// Show notification
+// Notification function
 function showNotification(message, type) {
-    const notification = document.createElement('div');
-    notification.classList.add('notification', type);
-    notification.textContent = message;
-    
-    // Append notification to body
+    const notification = document.createElement("div");
+    notification.classList.add("notification", type);
+    notification.innerText = message;
+
     document.body.appendChild(notification);
-    
-    // Automatically remove after 4 seconds
+
+    // Automatically remove notification after a few seconds
     setTimeout(() => {
         notification.remove();
     }, 4000);
 }
 
-// Attach events to buttons
+// Event listeners
 document.getElementById("loginBtn").addEventListener("click", loginUser);
 document.getElementById("registerBtn").addEventListener("click", registerUser);
 document.getElementById("logoutBtn").addEventListener("click", logoutUser);

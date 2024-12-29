@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auth System</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="app.js"></script>
 </head>
 <body>
-    <!-- Main Container -->
-    <div class="auth-container">
-        <h1>Authentication</h1>
+    <!-- Logged in email at the top right -->
+    <div id="loggedInEmail" class="logged-in-email"></div>
 
-        <!-- Login Form -->
-        <div id="loginForm" class="form-container">
-            <input id="email" class="input-field" type="email" placeholder="Email">
-            <input id="password" class="input-field" type="password" placeholder="Password">
-            <button id="loginBtn" class="btn login-btn">Login</button>
-            <button id="registerBtn" class="btn register-btn">Register</button>
-            <a href="reset-password.html" class="forgot-password">Forgot Password?</a>
+    <div class="auth-container">
+        <h1>Login</h1>
+        <form id="loginForm" class="form-container">
+            <input type="email" id="email" class="input-field" placeholder="Email" required>
+            <input type="password" id="password" class="input-field" placeholder="Password" required>
+            <button type="button" id="loginBtn" class="btn">Login</button>
+            <button type="button" id="registerBtn" class="btn register-btn">Register</button>
+        </form>
+
+        <!-- Extra content after login -->
+        <div id="extraContent" class="extra-content">
+            <p>Welcome to the site! You can add more content here.</p>
+            <p>More sections to make the site feel less empty.</p>
         </div>
 
         <!-- Logout Section -->
-        <div id="logoutSection" style="display: none;">
-            <h2>Welcome, <span id="userName"></span>!</h2>
-            <button id="logoutBtn" class="btn logout-btn">Log Out</button>
+        <div id="logoutSection" class="logout-section" style="display: none;">
+            <h2 id="logoutBtn">Logout</h2>
         </div>
     </div>
+
+    <script src="app.js"></script>
 </body>
 </html>

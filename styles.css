@@ -81,51 +81,11 @@ h1 {
     background-color: #2575fc;
 }
 
-/* Subpage specific styles */
-.dashboard-container {
-    padding: 20px;
-}
-
-/* Header (top-right) */
-.header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-#userEmail {
-    font-size: 1.2rem;
-    margin-right: 10px;
+/* Logout Section */
+.logout-section h2 {
+    font-size: 1.8rem;
     color: #333;
-}
-
-.logout-btn {
-    background-color: #2575fc;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.logout-btn:hover {
-    background-color: #6a11cb;
-}
-
-.content {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.content h2 {
-    font-size: 2rem;
-    color: #333;
-}
-
-.content p {
-    font-size: 1rem;
-    color: #555;
+    margin-bottom: 25px;
 }
 
 /* Responsive Design */
@@ -142,5 +102,53 @@ h1 {
     }
     .btn {
         font-size: 1rem;
+    }
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 300px;
+    width: auto;
+    text-align: center;
+    opacity: 0;
+    animation: slideIn 0.5s forwards, fadeOut 3s 3s forwards;
+}
+
+.notification.success {
+    background-color: #28a745;
+}
+
+.notification.error {
+    background-color: #dc3545;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
     }
 }

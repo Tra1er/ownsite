@@ -1,8 +1,8 @@
-// Import the necessary Firebase SDKs
+// Import necessary Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
-// Your web app's Firebase configuration
+// Your Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCaustScS6rJo-x_XVGy3S0NXktJ_MoaI4",
     authDomain: "ownsite-80538.firebaseapp.com",
@@ -19,9 +19,9 @@ const auth = getAuth(app);
 
 // Check for user state changes
 onAuthStateChanged(auth, (user) => {
-    const userName = document.getElementById("userName");
     const loginForm = document.getElementById("loginForm");
     const logoutSection = document.getElementById("logoutSection");
+    const userName = document.getElementById("userName");
     
     if (user) {
         // User is logged in
@@ -57,6 +57,8 @@ function loginUser() {
     signInWithEmailAndPassword(auth, email, password)
         .then(() => {
             showNotification("Login Successful", "success");
+            // Redirect to dashboard after successful login
+            window.location.href = "dashboard.html";  // Redirect to dashboard
         })
         .catch((error) => {
             showNotification(error.message, "error");
@@ -68,6 +70,8 @@ function logoutUser() {
     signOut(auth)
         .then(() => {
             showNotification("Logged Out Successfully", "success");
+            // Redirect to login page after logout
+            window.location.href = "index.html"; // Redirect to login
         })
         .catch((error) => {
             showNotification(error.message, "error");

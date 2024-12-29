@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Authentication Example</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="auth-container">
-        <h1>Welcome to Firebase Authentication</h1>
-
-        <!-- Login Form -->
-        <div id="loginForm" class="form-container">
-            <input type="email" id="email" placeholder="Enter your email" class="input-field"/>
-            <input type="password" id="password" placeholder="Enter your password" class="input-field"/>
-            <button id="loginBtn" class="btn">Login</button>
-            <button id="registerBtn" class="btn register-btn">Register</button>
+    <div class="dashboard-container">
+        <!-- Top Right Header -->
+        <div class="header">
+            <span id="userEmail"></span>
+            <button id="logoutBtn" class="btn logout-btn">Logout</button>
         </div>
 
-        <!-- Logout Section -->
-        <div id="logoutSection" class="logout-section" style="display:none;">
-            <h2>Welcome, <span id="userName"></span></h2>
-            <button id="logoutBtn" class="btn logout-btn">Logout</button>
+        <!-- Content of the Dashboard -->
+        <div class="content">
+            <h2>Welcome to your Dashboard!</h2>
+            <p>This is the page where you can manage your account.</p>
+            <p>Feel free to add more content here.</p>
         </div>
     </div>
 
-    <script type="module" src="app.js"></script>
+    <script type="module" src="dashboard.js"></script>
 </body>
 </html>

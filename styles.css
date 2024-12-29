@@ -24,15 +24,12 @@ body {
     padding: 40px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 500px; /* Increased max width */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 400px;
 }
 
 /* Title */
 h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #333;
     margin-bottom: 30px;
     font-weight: 600;
@@ -43,7 +40,6 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 100%; /* Ensures the form elements span the full width */
 }
 
 /* Input Fields */
@@ -54,13 +50,11 @@ h1 {
     font-size: 1rem;
     outline: none;
     transition: all 0.3s ease;
-    width: 100%;
 }
 
 .input-field:focus {
     border-color: #2575fc;
     box-shadow: 0 0 10px rgba(37, 117, 252, 0.5);
-    background-color: #f0f8ff;
 }
 
 /* Buttons */
@@ -72,12 +66,11 @@ h1 {
     font-size: 1.1rem;
     transition: all 0.3s ease;
     color: white;
-    width: 100%;
 }
 
 .btn:hover {
     background-color: #2575fc;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .register-btn {
@@ -88,39 +81,11 @@ h1 {
     background-color: #2575fc;
 }
 
-/* Display email in the top-right */
-.logged-in-email {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
 /* Logout Section */
 .logout-section h2 {
     font-size: 1.8rem;
     color: #333;
     margin-bottom: 25px;
-}
-
-.logout-section h2:hover {
-    color: #2575fc;
-    cursor: pointer;
-}
-
-/* Extra Content after Login */
-.extra-content {
-    margin-top: 30px;
-    color: #fff;
-    font-size: 1.2rem;
-    display: none; /* Hidden by default, shown after login */
-    text-align: left;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Design */
@@ -152,7 +117,7 @@ h1 {
     font-size: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    max-width: 350px;
+    max-width: 300px;
     width: auto;
     text-align: center;
     opacity: 0;

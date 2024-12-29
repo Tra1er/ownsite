@@ -1,8 +1,7 @@
-// Import the necessary Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCaustScS6rJo-x_XVGy3S0NXktJ_MoaI4",
     authDomain: "ownsite-80538.firebaseapp.com",
@@ -17,26 +16,37 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Check for user state changes
-onAuthStateChanged(auth, (user) => {
-    const userName = document.getElementById("userName");
-    const loginForm = document.getElementById("loginForm");
-    const logoutSection = document.getElementById("logoutSection");
-    
-    if (user) {
-        // User is logged in
-        userName.textContent = user.email;
-        loginForm.style.display = "none"; // Hide login form
-        logoutSection.style.display = "block"; // Show logout section
-    } else {
-        // User is logged out
-        loginForm.style.display = "block"; // Show login form
-        logoutSection.style.display = "none"; // Hide logout section
-    }
+// Show notification
+function showNotification(message, type) {
+    const notification = document.createElement("div");
+    notification.classList.add("notification", type);
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.remove();
+    }, 4000);
+}
+
+// Login user
+document.getElementById("loginBtn").addEventListener("click", () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("logoutSection").style.display = "block";
+            showNotification("Login Successful", "success");
+        })
+        .catch((error) => {
+            showNotification("Login Failed: " + error.message, "error");
+        });
 });
 
-// Register function
-function registerUser() {
+// Register user
+document.getElementById("registerBtn").addEventListener("click", () => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
@@ -45,51 +55,19 @@ function registerUser() {
             showNotification("Registration Successful", "success");
         })
         .catch((error) => {
-            showNotification(error.message, "error");
+            showNotification("Registration Failed: " + error.message, "error");
         });
-}
+});
 
-// Login function
-function loginUser() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            showNotification("Login Successful", "success");
-        })
-        .catch((error) => {
-            showNotification(error.message, "error");
-        });
-}
-
-// Log out function
-function logoutUser() {
+// Logout user
+document.getElementById("logoutBtn").addEventListener("click", () => {
     signOut(auth)
         .then(() => {
-            showNotification("Logged Out Successfully", "success");
+            document.getElementById("loginForm").style.display = "block";
+            document.getElementById("logoutSection").style.display = "none";
+            showNotification("Logged Out", "success");
         })
         .catch((error) => {
-            showNotification(error.message, "error");
+            showNotification("Logout Failed: " + error.message, "error");
         });
-}
-
-// Show notification
-function showNotification(message, type) {
-    const notification = document.createElement('div');
-    notification.classList.add('notification', type);
-    notification.textContent = message;
-    
-    // Append notification to body
-    document.body.appendChild(notification);
-    
-    // Automatically remove after 4 seconds
-    setTimeout(() => {
-        notification.remove();
-    }, 4000);
-}
-
-// Attach events to buttons
-document.getElementById("loginBtn").addEventListener("click", loginUser);
-document.getElementById("registerBtn").addEventListener("click", registerUser);
-document.getElementById("logoutBtn").addEventListener("click", logoutUser); // Ensure that this is wired up correctly
+});
